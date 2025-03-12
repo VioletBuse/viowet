@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "build": "xss-scan && npx @tailwindcss/cli -i ./src/css/input.css -o ./src/css/built.css && tsc --noEmit && esbuild src/index.ts --bundle --outfile=dist/index.js --platform=node --loader:.css=text"
+    "build": "zx scripts/build.mjs",
+    "dev": "zx scripts/build.mjs --watch"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,9 @@
     "@types/node": "^22.13.10",
     "esbuild": "^0.25.1",
     "prettier": "^3.5.3",
-    "typescript": "^5.8.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2",
+    "zx": "^8.4.1"
   },
   "dependencies": {
     "@kitajs/html": "^4.2.7",

@@ -3,8 +3,7 @@
 import "dotenv/config"
 import {Command} from "commander"
 import packageJson from "../package.json"
-import styles from "./css/built.css"
-import serve from "./commands/serve";
+import serve from "./commands/serve/index";
 
 const program = new Command();
 

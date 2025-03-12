@@ -14,3 +14,5 @@ worker
             console.log(`Ufff. Alright, fine.... I'll get to work. Listening at http://127.0.0.1:${port} :(`)
         })
     })
+
+export default worker

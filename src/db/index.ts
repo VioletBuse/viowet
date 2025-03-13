@@ -21,11 +21,6 @@ const migration_array_sorted = migration_array_raw.sort((a, b) => {
 
 export const migrations = migration_array_sorted as [string, string][];
 
-if (!process.env.DATABASE_URL) {
-    console.error("$DATABASE_URL not defined, exiting...");
-    process.exit(1);
-}
-
 export const db = drizzle(process.env.DATABASE_URL!, { schema });
 
 export const migrate = async () => {

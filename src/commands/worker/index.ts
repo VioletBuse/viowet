@@ -9,8 +9,6 @@ worker
   .description("Run the worker api to let the main ai manage this sandbox.")
   .option("-p, --port <number>", "the port to serve the api at", "8080")
   .action(async (options) => {
-    await migrate();
-
     const port = options.port;
 
     routes.listen(port, () => {

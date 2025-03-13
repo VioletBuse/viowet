@@ -5,22 +5,15 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1741853881917,
-      "tag": "0000_skinny_blue_marvel",
+      "when": 1741898548640,
+      "tag": "0000_thin_mariko_yashida",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "7",
-      "when": 1741853951897,
-      "tag": "0001_fearless_jean_grey",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1741854450723,
-      "tag": "0002_freezing_legion",
+      "when": 1741898570661,
+      "tag": "0001_curved_randall_flagg",
       "breakpoints": true
     }
   ]

@@ -2,11 +2,11 @@ import { Command } from "commander";
 import routes from "./routes";
 import { migrate } from "../../db";
 
-const serve = new Command();
+const agent = new Command();
 
-serve
-  .name("serve")
-  .description("Serve the main viowet api.")
+agent
+  .name("agent")
+  .description("Serve the main viowet api and run the agent.")
   .option("-p, --port <number>", "the port to serve the api at", "8080")
   .action(async (options) => {
     await migrate();
@@ -19,4 +19,4 @@ serve
     });
   });
 
-export default serve;
+export default agent;

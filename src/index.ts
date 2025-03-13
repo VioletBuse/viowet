@@ -4,7 +4,7 @@ import "dotenv/config";
 import "./db";
 import { Command } from "commander";
 import packageJson from "../package.json";
-import serve from "./commands/serve/index";
+import agent from "./commands/agent/index";
 import worker from "./commands/worker";
 import lighthouse from "./commands/lighthouse";
 
@@ -17,7 +17,7 @@ program
   )
   .version(packageJson.version);
 
-program.addCommand(serve);
+program.addCommand(agent);
 program.addCommand(worker);
 program.addCommand(lighthouse);
 

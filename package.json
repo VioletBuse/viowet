@@ -2,10 +2,13 @@
   "name": "viowet",
   "version": "0.1.0",
   "description": "",
+  "bin": "dist/index.js",
   "scripts": {
     "build": "zx scripts/build.mjs",
     "dev": "zx scripts/build.mjs --watch",
-    "generate": "drizzle-kit generate"
+    "format": "npx prettier --write .",
+    "generate": "drizzle-kit generate",
+    "studio": "drizzle-kit studio"
   },
   "repository": {
     "type": "git",

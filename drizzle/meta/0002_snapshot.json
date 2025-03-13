@@ -62,12 +62,8 @@
           "name": "documentation_project_url_projects_url_fk",
           "tableFrom": "documentation",
           "tableTo": "projects",
-          "columnsFrom": [
-            "project_url"
-          ],
-          "columnsTo": [
-            "url"
-          ],
+          "columnsFrom": ["project_url"],
+          "columnsTo": ["url"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -126,12 +122,8 @@
           "name": "tasks_project_url_projects_url_fk",
           "tableFrom": "tasks",
           "tableTo": "projects",
-          "columnsFrom": [
-            "project_url"
-          ],
-          "columnsTo": [
-            "url"
-          ],
+          "columnsFrom": ["project_url"],
+          "columnsTo": ["url"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }

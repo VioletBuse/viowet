@@ -1,6 +1,5 @@
+import express from "express";
 
-import express from "express"
+const routes = express();
 
-const routes = express()
-
-export default routes
+export default routes;

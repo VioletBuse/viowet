@@ -45,13 +45,9 @@
         "tasks_project_url_projects_url_fk": {
           "name": "tasks_project_url_projects_url_fk",
           "tableFrom": "tasks",
-          "columnsFrom": [
-            "project_url"
-          ],
+          "columnsFrom": ["project_url"],
           "tableTo": "projects",
-          "columnsTo": [
-            "url"
-          ],
+          "columnsTo": ["url"],
           "onUpdate": "no action",
           "onDelete": "no action"
         }

@@ -2,6 +2,7 @@
 
 import "zx/globals";
 import * as esbuild from "esbuild";
+import ImportGlobPlugin from "esbuild-plugin-import-glob";
 
 const watch = process.argv.includes("--watch") || process.argv.includes("-w");
 
@@ -20,12 +21,14 @@ if (watch) {
   tailwindcss_flags.push("--watch");
 }
 
+const plugins = [ImportGlobPlugin.default()];
 const entryPoints = ["src/index.ts"];
 const bundle = true;
 const outfile = "dist/index.js";
 const platform = "node";
 const loader = {
   ".css": "text",
+  ".sql": "text",
 };
 const logLevel = "info";
 
@@ -37,6 +40,7 @@ if (!watch) {
   await $`npx tsc --noEmit`;
 
   await esbuild.build({
+    plugins,
     entryPoints,
     bundle,
     outfile,
@@ -48,6 +52,7 @@ if (!watch) {
   processes.push($`npx @tailwindcss/cli ${tailwindcss_flags}`);
 
   const esbuild_context = await esbuild.context({
+    plugins,
     entryPoints,
     bundle,
     outfile,

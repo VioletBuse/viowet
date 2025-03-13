@@ -1,9 +1,11 @@
 import { Command } from "commander";
 import routes from "./routes";
+import { migrate } from "../../db";
 
 const lighthouse = new Command();
 
-lighthouse.name('lighthouse').description("Run the lighthouse api, which routes communications between the main process and the sandbox. Also optionally has the capability to spin up new sandbox workers.").option('-p, --port <number>', 'the port to serve the api at', '8080').action((options) => {
+lighthouse.name('lighthouse').description("Run the lighthouse api, which routes communications between the main process and the sandbox. Also optionally has the capability to spin up new sandbox workers.").option('-p, --port <number>', 'the port to serve the api at', '8080').action(async (options) => {
+    await migrate()
     const port = options.port;
 
     routes.listen(port, () => {

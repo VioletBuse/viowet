@@ -19,14 +19,4 @@ export class DockerBackend implements LighthouseBackend {
     async destroy_sandbox(id: string) {
         await this.#docker.pruneContainers({ id })
     }
-
-    async run_command(id: string, command: string[], directory: string, env: Record<string, string>) {
-        const container = this.#docker.getContainer(id);
-
-        const Env: string[] = Object.entries(env).map(([key, value]) => `${key}="${value}"`)
-
-        const result = await container.exec({ Cmd: command, Env, WorkingDir: directory })
-
-        // const id = result.
-    }
 }

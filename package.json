@@ -8,7 +8,8 @@
     "dev": "zx scripts/build.mjs --watch",
     "format": "npx prettier --write .",
     "generate": "drizzle-kit generate",
-    "studio": "drizzle-kit studio"
+    "studio": "drizzle-kit studio",
+    "package": "mkdir ./bin && npx pkg . --out-path ./bin --sea --public --no-bytecode"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.10",
     "@types/pg": "^8.11.11",
+    "@yao-pkg/pkg": "^6.3.2",
     "drizzle-kit": "^0.30.5",
     "esbuild": "^0.25.1",
     "esbuild-plugin-import-glob": "^0.1.1",

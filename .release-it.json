@@ -8,7 +8,11 @@
   "github": {
     "release": true,
     "assets": ["./bin/*"],
-    "web": true
+    "web": true,
+    "autoGenerate": true,
+    "comments": {
+      "submit": true
+    }
   },
   "npm": {
     "publish": false

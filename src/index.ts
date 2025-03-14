@@ -3,10 +3,10 @@
 import "dotenv/config";
 import "./db";
 import { Command } from "commander";
-import packageJson from "../package.json";
 import agent from "./commands/agent/index";
 import worker from "./commands/worker";
 import lighthouse from "./commands/lighthouse";
+import { cli_version } from "./util/version";
 
 const program = new Command();
 
@@ -15,7 +15,7 @@ program
   .description(
     'Violet, the worlds greatest programmer :copium:, available as an ai to help you "improve" your code.',
   )
-  .version(packageJson.version);
+  .version(cli_version);
 
 program.addCommand(agent);
 program.addCommand(worker);

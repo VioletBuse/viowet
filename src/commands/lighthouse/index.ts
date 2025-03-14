@@ -1,6 +1,8 @@
 import { Command } from "commander";
-import routes from "./routes";
+import { createServer } from "http";
+import routes from "./routes/http";
 import { migrate } from "../../db";
+import { register_websocket_server } from "./routes/websockets";
 
 const lighthouse = new Command();
 
@@ -14,11 +16,14 @@ lighthouse
     await migrate();
     const port = options.port;
 
-    routes.listen(port, () => {
+    const server = createServer(routes);
+    register_websocket_server(server)
+
+    server.listen(port, function () {
       console.log(
         `Alright I'll get them to talk to each other... just this once though hmph! Listening at http://127.0.0.1:${port}`,
       );
-    });
+    })
   });
 
 export default lighthouse;

@@ -10,7 +10,7 @@
     "generate": "drizzle-kit generate",
     "studio": "drizzle-kit studio",
     "package": "mkdir ./bin && npx pkg . --out-path ./bin --sea --public --no-bytecode",
-    "release:minor": "release-it minor"
+    "release": "GITHUB_TOKEN_RELEASE_IT=$(gh auth token) npx release-it"
   },
   "repository": {
     "type": "git",

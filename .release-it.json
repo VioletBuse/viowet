@@ -7,8 +7,8 @@
   },
   "github": {
     "release": true,
+    "releaseName": "Release ${version}",
     "assets": ["./bin/*"],
-    "web": true,
     "autoGenerate": true,
     "comments": {
       "submit": true

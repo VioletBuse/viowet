@@ -9,7 +9,8 @@
     "format": "npx prettier --write .",
     "generate": "drizzle-kit generate",
     "studio": "drizzle-kit studio",
-    "package": "mkdir ./bin && npx pkg . --out-path ./bin --sea --public --no-bytecode"
+    "package": "mkdir ./bin && npx pkg . --out-path ./bin --sea --public --no-bytecode",
+    "release:minor": "release-it minor"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "esbuild": "^0.25.1",
     "esbuild-plugin-import-glob": "^0.1.1",
     "prettier": "^3.5.3",
+    "release-it": "^18.1.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2",
@@ -48,6 +50,7 @@
     "express": "^4.21.2",
     "nanoid": "^5.1.3",
     "pg": "^8.14.0",
-    "tailwindcss": "^4.0.13"
+    "tailwindcss": "^4.0.13",
+    "tar": "^7.4.3"
   }
 }

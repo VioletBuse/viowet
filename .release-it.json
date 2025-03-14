@@ -7,7 +7,8 @@
   },
   "github": {
     "release": true,
-    "assets": ["./bin/*"]
+    "assets": ["./bin/*"],
+    "web": true
   },
   "npm": {
     "publish": false

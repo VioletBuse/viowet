@@ -5,8 +5,8 @@ import "zx/globals";
 $.verbose = true;
 
 // clean up and setup
-await $`rm -rf ./bin && mkdir ./bin`;
-await $`mkdir ./bin/archive-linux ./bin/archive-macos ./bin/archive-windows`;
+await $`rm -rf ./bin/*`;
+await $`mkdir -p ./bin/archive-linux ./bin/archive-macos ./bin/archive-windows`;
 
 // build standalone executables
 await $`npx pkg . --out-path ./bin --sea --public --no-bytecode`;

@@ -140,3 +140,6 @@ binaries/
 bin/
 artifacts/
 build/
+
+# Puppeteer cache
+.puppeteer/

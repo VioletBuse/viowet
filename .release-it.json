@@ -19,6 +19,6 @@
     "publish": false
   },
   "hooks": {
-    "after:bump": "rm -rf dist && rm -rf bin && npm run build && npm run package"
+    "after:bump": "rm -rf dist && rm -rf bin && npm run build && npx puppeteer browsers install && npm run package"
   }
 }

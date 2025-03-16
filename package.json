@@ -1,65 +1,47 @@
 {
   "name": "viowet",
   "version": "0.4.0",
-  "description": "",
+  "description": "Your own personal violet, to help you code \"high quality\" apps. Use me to generate and modify code.",
+  "main": "dist/index.js",
   "bin": "dist/index.js",
+  "type": "module",
   "scripts": {
-    "build": "zx scripts/build.mjs",
-    "dev": "zx scripts/build.mjs --watch",
-    "format": "npx prettier --write .",
-    "generate": "drizzle-kit generate",
-    "studio": "drizzle-kit studio",
-    "package": "zx scripts/package.mjs",
+    "build": "esbuild src/index.ts --bundle --platform=node --format=esm --packages=external --outfile=dist/index.js",
+    "dev": "npm run build -- --watch",
     "release": "GITHUB_TOKEN_RELEASE_IT=$(gh auth token) npx release-it"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VioletBuse/viowet.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "ai",
+    "agent",
+    "violet"
+  ],
+  "author": "Violet Buse",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/VioletBuse/viowet/issues"
   },
   "homepage": "https://github.com/VioletBuse/viowet#readme",
   "devDependencies": {
-    "@types/dockerode": "^3.3.35",
-    "@types/express": "^5.0.0",
-    "@types/express-http-proxy": "^1.6.6",
+    "@tailwindcss/cli": "^4.0.14",
     "@types/node": "^22.13.10",
-    "@types/pg": "^8.11.11",
-    "@types/ws": "^8.18.0",
-    "@yao-pkg/pkg": "^6.3.2",
-    "drizzle-kit": "^0.30.5",
     "esbuild": "^0.25.1",
-    "esbuild-plugin-import-glob": "^0.1.1",
-    "prettier": "^3.5.3",
     "release-it": "^18.1.2",
-    "ts-node": "^10.9.2",
-    "tsx": "^4.19.3",
     "typescript": "^5.8.2",
     "zx": "^8.4.1"
   },
   "dependencies": {
     "@kitajs/html": "^4.2.7",
     "@kitajs/ts-html-plugin": "^4.1.1",
-    "@tailwindcss/cli": "^4.0.13",
-    "commander": "^13.1.0",
-    "dockerode": "^4.0.4",
+    "conf": "^13.1.0",
     "dotenv": "^16.4.7",
-    "drizzle-orm": "^0.40.0",
-    "express": "^4.21.2",
-    "express-http-proxy": "^2.1.1",
-    "nanoid": "^5.1.3",
-    "pg": "^8.14.0",
-    "portfinder": "^1.0.35",
-    "puppeteer": "^24.4.0",
-    "tailwindcss": "^4.0.13",
-    "tar": "^7.4.3",
-    "ws": "^8.18.1"
-  },
-  "pkg": {
-    "assets": "./.puppeteer/**/*"
+    "inquirer": "^12.5.0",
+    "meow": "^13.2.0",
+    "nanoid": "^5.1.4",
+    "ora": "^8.2.0",
+    "tailwindcss": "^4.0.14"
   }
 }

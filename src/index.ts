@@ -1,24 +1,39 @@
-#!/usr/bin/env node
+#!/usr/bin/env  node
 
-import "dotenv/config";
-import "./db";
-import { Command } from "commander";
-import agent from "./commands/agent/index";
-import worker from "./commands/worker";
-import lighthouse from "./commands/lighthouse";
-import { cli_version } from "./util/version";
+import meow from "meow"
+import { clear_token, get_octokit } from "./github"
+import { run_agent } from "./agent"
 
-const program = new Command();
+const cli = meow(`
+    Usage
+        $ viowet
 
-program
-  .name("viowet")
-  .description(
-    'Violet, the worlds greatest programmer :copium:, available as an ai to help you "improve" your code.',
-  )
-  .version(cli_version);
+    Options
+        --logout, -l  Logout from github
 
-program.addCommand(agent);
-program.addCommand(worker);
-program.addCommand(lighthouse);
+    Examples
+        $ viowet
+        🤔 let's get thinking
 
-program.parse();
+        $ viowet --logout
+        Logging out 👋
+`, {
+    importMeta: import.meta,
+    autoHelp: true,
+    autoVersion: true,
+    flags: {
+        logout: {
+            type: "boolean",
+            shortFlag: "l",
+            default: false
+        }
+    }
+})
+
+if (cli.flags.logout) {
+    console.log("Logging out 👋")
+    clear_token()
+    process.exit(0)
+}
+
+await run_agent()

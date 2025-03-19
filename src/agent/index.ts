@@ -1,10 +1,17 @@
 import ora from "ora"
-import { get_octokit } from "../github"
+import { get_octokit, is_logged_in } from "../github"
 import inquirer from "inquirer"
+import { Command } from "cliffy"
 
-export const run_agent = async () => {
+export const run_agent = async (): Promise<void> => {
+    const login_status = await is_logged_in()
+
+    if (!login_status) {
+        console.error("Please login to github using the `auth login` command")
+        return
+    }
+
     const octokit = await get_octokit()
-    console.log("🤔 let's get thinking")
     const spinner = ora("Fetching Github repos").start()
     const repos = await octokit.request("GET /user/repos");
 
@@ -12,7 +19,7 @@ export const run_agent = async () => {
 
     if (repos.status !== 200) {
         console.error("Failed to fetch repos")
-        process.exit(1)
+        return
     }
 
     const data = await inquirer.prompt([
@@ -35,3 +42,10 @@ export const run_agent = async () => {
     console.log(data)
     console.log("🚀 Done")
 }
+
+export const run_agent_command = (): Command => ({
+    description: "Run the agent",
+    action: async () => {
+        await run_agent()
+    }
+})

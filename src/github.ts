@@ -1,6 +1,7 @@
 import { createOAuthDeviceAuth } from '@octokit/auth-oauth-device';
 import { config } from './conf';
 import { Octokit } from '@octokit/core';
+import { CLI, Command } from 'cliffy';
 
 const auth = createOAuthDeviceAuth({
     clientType: 'oauth-app',
@@ -57,7 +58,60 @@ export const get_octokit = async () => {
     return await OctokitClientManager.getInstance().getClient()
 }
 
+export const is_logged_in = async () => {
+    const stored_password = await config.get('token')
+
+    if (stored_password === null || stored_password === undefined) {
+        return false
+    }
+
+    const client = new Octokit({
+        auth: stored_password
+    });
+
+    try {
+        await client.request("GET /user")
+        return true
+    } catch (e) {
+        return false
+    }
+}
+
 export const clear_token = async () => {
     await OctokitClientManager.getInstance().clearToken()
 }
+
+export const auth_commands = (cli: CLI): Command => ({
+    description: "Authentication commands. For more info run `help auth`",
+    async action() {
+        cli.showHelp()
+    },
+    subcommands: {
+        logout: {
+            description: "Clear stored token",
+            async action() {
+                await clear_token()
+                console.log("🔓 Token cleared")
+            }
+        },
+        login: {
+            description: "Login to Github",
+            async action() {
+                await get_octokit()
+                console.log("🔒 Logged in")
+            }
+        },
+        status: {
+            description: "Check login status",
+            async action() {
+                const Login_status = await is_logged_in()
+                if (Login_status) {
+                    console.log("🔒 Logged in")
+                } else {
+                    console.log("🔓 Not logged in")
+                }
+            }
+        }
+    }
+})
 

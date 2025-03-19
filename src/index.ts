@@ -1,39 +1,27 @@
 #!/usr/bin/env  node
 
-import meow from "meow"
-import { clear_token, get_octokit } from "./github"
-import { run_agent } from "./agent"
+import { auth_commands, clear_token, get_octokit, is_logged_in } from "./github"
+import { CLI, Command } from "cliffy"
+import packagejson from "../package.json"
+import { run_agent_command } from "./agent";
 
-const cli = meow(`
-    Usage
-        $ viowet
+export const cli = new CLI({ quietBlank: true })
+    .setDelimiter("🚀 viowet > ")
+    .setName("viowet")
+    .setVersion(packagejson.version)
+    .setInfo(packagejson.description);
 
-    Options
-        --logout, -l  Logout from github
-
-    Examples
-        $ viowet
-        🤔 let's get thinking
-
-        $ viowet --logout
-        Logging out 👋
-`, {
-    importMeta: import.meta,
-    autoHelp: true,
-    autoVersion: true,
-    flags: {
-        logout: {
-            type: "boolean",
-            shortFlag: "l",
-            default: false
-        }
+const exit_command: Command = {
+    description: "Exit the CLI",
+    action() {
+        process.exit(0)
     }
-})
-
-if (cli.flags.logout) {
-    console.log("Logging out 👋")
-    clear_token()
-    process.exit(0)
 }
 
-await run_agent()
+
+
+cli.addCommand(".exit", exit_command)
+    .addCommand("auth", auth_commands(cli))
+    .addCommand("agent", run_agent_command())
+
+cli.show()

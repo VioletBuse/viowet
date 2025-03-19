@@ -15,7 +15,7 @@ export const run_agent = async () => {
         process.exit(1)
     }
 
-    const repo = await inquirer.prompt([
+    const data = await inquirer.prompt([
         {
             type: "list",
             name: "repo",
@@ -30,14 +30,8 @@ export const run_agent = async () => {
             name: "task",
             message: "What should I do?"
         },
-        {
-            type: "input",
-            name: "branch",
-            message: "What should I name the branch?"
-        }
-    ]);
+    ])
 
-    console.log(repo)
+    console.log(data)
     console.log("🚀 Done")
-
 }

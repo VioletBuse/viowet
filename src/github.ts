@@ -1,6 +1,6 @@
 import { createOAuthDeviceAuth } from '@octokit/auth-oauth-device';
-import { Octokit } from 'octokit'
 import { config } from './conf';
+import { Octokit } from '@octokit/core';
 
 const auth = createOAuthDeviceAuth({
     clientType: 'oauth-app',
